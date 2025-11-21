@@ -1,0 +1,19 @@
+{
+  "name": "@workspace/tsup-config",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "reinit": "tsup",
+    "clean": "rimraf dist .turbo"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "tsup": "catalog:"
+  },
+  "devDependencies": {
+    "@workspace/tsconfig": "workspace:",
+    "rimraf": "catalog:",
+    "typescript": "catalog:"
+  }
+}

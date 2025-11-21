@@ -1,0 +1,27 @@
+{
+  "name": "@workspace/eslint-config",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "reinit": "tsup",
+    "clean": "rimraf dist .turbo"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@eslint/js": "catalog:",
+    "eslint": "catalog:",
+    "eslint-plugin-jsonc": "^2.21.0",
+    "eslint-plugin-perfectionist": "catalog:",
+    "eslint-plugin-unused-imports": "catalog:",
+    "globals": "catalog:",
+    "typescript-eslint": "catalog:"
+  },
+  "devDependencies": {
+    "@workspace/tsconfig": "workspace:",
+    "@workspace/tsup-config": "workspace:",
+    "rimraf": "catalog:",
+    "tsup": "catalog:",
+    "typescript": "catalog:"
+  }
+}
