@@ -9,14 +9,10 @@ import {
 } from './configs';
 
 type FlatConfig = Linter.Config;
-type FlatConfigPromise =
-  | FlatConfig
-  | FlatConfig[]
-  | Promise<FlatConfig>
-  | Promise<FlatConfig[]>;
+type InternalFlatConfig = FlatConfig | FlatConfig[];
 
 function defineConfig(config: FlatConfig[] = []) {
-  const configs: FlatConfigPromise[] = [
+  const configs: InternalFlatConfig[] = [
     ignores(),
     javascript(),
     perfectionist(),
