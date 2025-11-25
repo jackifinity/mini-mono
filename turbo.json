@@ -17,7 +17,8 @@
     },
     "reinit": {
       "dependsOn": ["^reinit"],
-      "cache": false
+      "cache": true,
+      "outputs": ["dist/**"]
     }
   }
 }

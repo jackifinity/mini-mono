@@ -1,11 +1,12 @@
 {
   "name": "mini-mono",
-  "version": "1.0.0",
-  "description": "",
-  "keywords": [],
-  "license": "ISC",
-  "author": "",
   "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.12.4",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "scripts": {
     "clean": "turbo run clean",
     "reinit": "turbo run reinit",
@@ -23,6 +24,5 @@
     "prettier": "catalog:",
     "turbo": "catalog:",
     "typescript": "catalog:"
-  },
-  "packageManager": "pnpm@10.12.4"
+  }
 }

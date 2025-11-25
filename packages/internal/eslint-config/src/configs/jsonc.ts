@@ -1,10 +1,70 @@
 import type { Linter } from 'eslint';
 
-import eslintPluginJsonc from 'eslint-plugin-jsonc';
+import pluginJsonc from 'eslint-plugin-jsonc';
+import parserJsonc from 'jsonc-eslint-parser';
 
-export function json(): Array<Linter.Config> {
+export function jsonc(): Array<Linter.Config> {
   return [
-    ...eslintPluginJsonc.configs['flat/recommended-with-jsonc'],
+    {
+      name: 'jsonc/setup',
+      plugins: {
+        jsonc: pluginJsonc as any,
+      },
+    },
+    {
+      name: 'jsonc/rules',
+      files: ['**/*.json', '**/*.json5', '**/*.jsonc'],
+      languageOptions: {
+        parser: parserJsonc,
+      },
+      rules: {
+        'jsonc/no-bigint-literals': 'error',
+        'jsonc/no-binary-expression': 'error',
+        'jsonc/no-binary-numeric-literals': 'error',
+        'jsonc/no-dupe-keys': 'error',
+        'jsonc/no-escape-sequence-in-identifier': 'error',
+        'jsonc/no-floating-decimal': 'error',
+        'jsonc/no-hexadecimal-numeric-literals': 'error',
+        'jsonc/no-infinity': 'error',
+        'jsonc/no-multi-str': 'error',
+        'jsonc/no-nan': 'error',
+        'jsonc/no-number-props': 'error',
+        'jsonc/no-numeric-separators': 'error',
+        'jsonc/no-octal': 'error',
+        'jsonc/no-octal-escape': 'error',
+        'jsonc/no-octal-numeric-literals': 'error',
+        'jsonc/no-parenthesized': 'error',
+        'jsonc/no-plus-sign': 'error',
+        'jsonc/no-regexp-literals': 'error',
+        'jsonc/no-sparse-arrays': 'error',
+        'jsonc/no-template-literals': 'error',
+        'jsonc/no-undefined-value': 'error',
+        'jsonc/no-unicode-codepoint-escapes': 'error',
+        'jsonc/no-useless-escape': 'error',
+        'jsonc/space-unary-ops': 'error',
+        'jsonc/valid-json-number': 'error',
+        'jsonc/vue-custom-block/no-parsing-error': 'error',
+        'jsonc/array-bracket-spacing': ['error', 'never'],
+        'jsonc/comma-dangle': ['error', 'never'],
+        'jsonc/comma-style': ['error', 'last'],
+        'jsonc/indent': ['error', 2],
+        'jsonc/key-spacing': [
+          'error',
+          { afterColon: true, beforeColon: false },
+        ],
+        'jsonc/object-curly-newline': [
+          'error',
+          { consistent: true, multiline: true },
+        ],
+        'jsonc/object-curly-spacing': ['error', 'always'],
+        'jsonc/object-property-newline': [
+          'error',
+          { allowAllPropertiesOnSameLine: true },
+        ],
+        'jsonc/quote-props': 'error',
+        'jsonc/quotes': 'error',
+      },
+    },
     sortTsconfig(),
     sortPackageJson(),
   ];
@@ -12,56 +72,58 @@ export function json(): Array<Linter.Config> {
 
 function sortPackageJson(): Linter.Config {
   return {
+    name: 'sort/package-json',
     files: ['**/package.json'],
     rules: {
       'jsonc/sort-array-values': [
         'error',
         {
           order: { type: 'asc' },
-          pathPattern: '^files$|^pnpm.neverBuiltDependencies$',
+          pathPattern: '^files$',
         },
       ],
       'jsonc/sort-keys': [
         'error',
         {
           order: [
+            'publisher',
             'name',
+            'displayName',
+            'type',
             'version',
-            'description',
             'private',
-            'keywords',
-            'homepage',
-            'bugs',
-            'repository',
-            'license',
+            'packageManager',
+            'description',
             'author',
             'contributors',
-            'categories',
+            'license',
             'funding',
-            'type',
-            'scripts',
-            'files',
+            'homepage',
+            'repository',
+            'bugs',
+            'keywords',
+            'categories',
             'sideEffects',
-            'bin',
+            'imports',
+            'exports',
             'main',
             'module',
             'unpkg',
             'jsdelivr',
             'types',
             'typesVersions',
-            'imports',
-            'exports',
-            'publishConfig',
+            'bin',
             'icon',
+            'files',
+            'engines',
             'activationEvents',
             'contributes',
+            'scripts',
             'peerDependencies',
             'peerDependenciesMeta',
             'dependencies',
             'optionalDependencies',
             'devDependencies',
-            'engines',
-            'packageManager',
             'pnpm',
             'overrides',
             'resolutions',
@@ -81,8 +143,32 @@ function sortPackageJson(): Linter.Config {
           pathPattern: '^(?:resolutions|overrides|pnpm.overrides)$',
         },
         {
+          order: { type: 'asc' },
+          pathPattern: '^workspaces\\.catalog$',
+        },
+        {
+          order: { type: 'asc' },
+          pathPattern: '^workspaces\\.catalogs\\.[^.]+$',
+        },
+        {
           order: ['types', 'import', 'require', 'default'],
           pathPattern: '^exports.*$',
+        },
+        {
+          order: [
+            // client hooks only
+            'pre-commit',
+            'prepare-commit-msg',
+            'commit-msg',
+            'post-commit',
+            'pre-rebase',
+            'post-rewrite',
+            'post-checkout',
+            'post-merge',
+            'pre-push',
+            'pre-auto-gc',
+          ],
+          pathPattern: '^(?:gitHooks|husky|simple-git-hooks)$',
         },
       ],
     },
@@ -91,6 +177,7 @@ function sortPackageJson(): Linter.Config {
 
 function sortTsconfig(): Linter.Config {
   return {
+    name: 'sort/tsconfig-json',
     files: [
       '**/tsconfig.json',
       '**/tsconfig.*.json',
@@ -132,6 +219,7 @@ function sortTsconfig(): Linter.Config {
             'useDefineForClassFields',
             'emitDecoratorMetadata',
             'experimentalDecorators',
+            'libReplacement',
             /* Modules */
             'baseUrl',
             'rootDir',
@@ -202,9 +290,11 @@ function sortTsconfig(): Linter.Config {
             'allowSyntheticDefaultImports',
             'esModuleInterop',
             'forceConsistentCasingInFileNames',
+            'isolatedDeclarations',
             'isolatedModules',
             'preserveSymlinks',
             'verbatimModuleSyntax',
+            'erasableSyntaxOnly',
             /* Completeness */
             'skipDefaultLibCheck',
             'skipLibCheck',

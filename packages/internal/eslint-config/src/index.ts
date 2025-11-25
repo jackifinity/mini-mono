@@ -1,23 +1,25 @@
-import { Linter } from 'eslint';
+import type { Linter } from 'eslint';
 
 import {
   ignores,
   javascript,
-  json,
-  perfectionist,
   typescript,
+  jsonc,
+  pnpm,
+  perfectionist,
 } from './configs';
 
 type FlatConfig = Linter.Config;
 type InternalFlatConfig = FlatConfig | FlatConfig[];
 
-function defineConfig(config: FlatConfig[] = []) {
+function defineConfig(config: FlatConfig[] = []): InternalFlatConfig[] {
   const configs: InternalFlatConfig[] = [
     ignores(),
-    javascript(),
-    perfectionist(),
     typescript(),
-    json(),
+    javascript(),
+    jsonc(),
+    pnpm(),
+    perfectionist(),
     ...config,
   ];
 

@@ -3,6 +3,7 @@ import type { Linter } from 'eslint';
 export function ignores(): Linter.Config[] {
   return [
     {
+      name: 'global/ignore',
       ignores: [
         '**/node_modules',
         '**/dist',

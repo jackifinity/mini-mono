@@ -1,3 +1,6 @@
 {
-  "extends": "@workspace/tsconfig/base.json"
+  "extends": "@workspace/tsconfig/base.json",
+  "compilerOptions": {
+    "moduleResolution": "bundler"
+  }
 }

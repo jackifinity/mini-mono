@@ -1,12 +1,12 @@
 import type { Linter } from 'eslint';
 
-import js from '@eslint/js';
 import pluginUnusedImports from 'eslint-plugin-unused-imports';
 import globals from 'globals';
 
 export function javascript(): Linter.Config[] {
   return [
     {
+      name: 'javascript/setup',
       languageOptions: {
         ecmaVersion: 'latest',
         globals: {
@@ -29,11 +29,14 @@ export function javascript(): Linter.Config[] {
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
+    },
+    {
+      name: 'javascript/rules',
+      files: ['**/*.?([cm])js?(x)'],
       plugins: {
         'unused-imports': pluginUnusedImports,
       },
       rules: {
-        ...js.configs.recommended.rules,
         'accessor-pairs': [
           'error',
           { enforceForClassMembers: true, setWithoutGet: true },
@@ -43,9 +46,7 @@ export function javascript(): Linter.Config[] {
         'constructor-super': 'error',
         'default-case-last': 'error',
         'dot-notation': ['error', { allowKeywords: true }],
-        eqeqeq: ['error', 'always'],
-        'keyword-spacing': 'off',
-
+        eqeqeq: ['error', 'smart'],
         'new-cap': [
           'error',
           { capIsNew: false, newIsCap: true, properties: true },
@@ -69,7 +70,6 @@ export function javascript(): Linter.Config[] {
         'no-duplicate-case': 'error',
         'no-empty': ['error', { allowEmptyCatch: true }],
         'no-empty-character-class': 'error',
-        'no-empty-function': 'off',
         'no-empty-pattern': 'error',
         'no-eval': 'error',
         'no-ex-assign': 'error',
@@ -91,8 +91,7 @@ export function javascript(): Linter.Config[] {
         'no-multi-str': 'error',
         'no-new': 'error',
         'no-new-func': 'error',
-        'no-new-object': 'error',
-        'no-new-symbol': 'error',
+        'no-new-native-nonconstructor': 'error',
         'no-new-wrappers': 'error',
         'no-obj-calls': 'error',
         'no-octal': 'error',
@@ -132,9 +131,6 @@ export function javascript(): Linter.Config[] {
         ],
         'no-restricted-syntax': [
           'error',
-          'DebuggerStatement',
-          'LabeledStatement',
-          'WithStatement',
           'TSEnumDeclaration[const=true]',
           'TSExportAssignment',
         ],
@@ -146,7 +142,7 @@ export function javascript(): Linter.Config[] {
         'no-template-curly-in-string': 'error',
         'no-this-before-super': 'error',
         'no-throw-literal': 'error',
-        'no-undef': 'off',
+        'no-undef': 'error',
         'no-undef-init': 'error',
         'no-unexpected-multiline': 'error',
         'no-unmodified-loop-condition': 'error',
@@ -174,7 +170,7 @@ export function javascript(): Linter.Config[] {
         ],
         'no-use-before-define': [
           'error',
-          { classes: false, functions: false, variables: false },
+          { classes: false, functions: false, variables: true },
         ],
         'no-useless-backreference': 'error',
         'no-useless-call': 'error',
@@ -188,7 +184,10 @@ export function javascript(): Linter.Config[] {
         'object-shorthand': [
           'error',
           'always',
-          { avoidQuotes: true, ignoreConstructors: false },
+          {
+            avoidQuotes: true,
+            ignoreConstructors: false,
+          },
         ],
         'one-var': ['error', { initialized: 'never' }],
         'prefer-arrow-callback': [
@@ -206,23 +205,20 @@ export function javascript(): Linter.Config[] {
           },
         ],
         'prefer-exponentiation-operator': 'error',
-
         'prefer-promise-reject-errors': 'error',
         'prefer-regex-literals': ['error', { disallowRedundantWrapping: true }],
         'prefer-rest-params': 'error',
         'prefer-spread': 'error',
         'prefer-template': 'error',
-        'space-before-function-paren': 'off',
-        'spaced-comment': 'error',
         'symbol-description': 'error',
         'unicode-bom': ['error', 'never'],
-
         'unused-imports/no-unused-imports': 'error',
         'unused-imports/no-unused-vars': [
           'error',
           {
             args: 'after-used',
             argsIgnorePattern: '^_',
+            ignoreRestSiblings: true,
             vars: 'all',
             varsIgnorePattern: '^_',
           },
@@ -232,7 +228,6 @@ export function javascript(): Linter.Config[] {
           { enforceForIndexOf: true, enforceForSwitchCase: true },
         ],
         'valid-typeof': ['error', { requireStringLiterals: true }],
-
         'vars-on-top': 'error',
         yoda: ['error', 'never'],
       },

@@ -1,7 +1,7 @@
 {
   "name": "@workspace/tsconfig",
-  "private": true,
   "type": "module",
+  "private": true,
   "files": [
     "base.json"
   ]
