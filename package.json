@@ -15,7 +15,8 @@
     "update:deps": "npx taze -r -w",
     "catalog": "pnpx codemod pnpm/catalog",
     "format": "prettier . --write",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:^",

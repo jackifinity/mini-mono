@@ -7,6 +7,7 @@ import {
   jsonc,
   pnpm,
   perfectionist,
+  turbo,
 } from './configs';
 
 type FlatConfig = Linter.Config;
@@ -20,6 +21,7 @@ function defineConfig(config: FlatConfig[] = []): InternalFlatConfig[] {
     jsonc(),
     pnpm(),
     perfectionist(),
+    turbo(),
     ...config,
   ];
 
