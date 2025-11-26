@@ -8,6 +8,7 @@ import {
   pnpm,
   perfectionist,
   turbo,
+  react,
 } from './configs';
 
 type FlatConfig = Linter.Config;
@@ -18,6 +19,7 @@ function defineConfig(config: FlatConfig[] = []): InternalFlatConfig[] {
     ignores(),
     typescript(),
     javascript(),
+    react(),
     jsonc(),
     pnpm(),
     perfectionist(),
