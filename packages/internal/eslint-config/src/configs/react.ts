@@ -14,6 +14,9 @@ export function react(): Array<Linter.Config> {
       plugins: {
         react: reactPlugin,
       },
+      settings: {
+        version: 'detect',
+      },
       languageOptions: {
         parserOptions: {
           ecmaFeatures: {
