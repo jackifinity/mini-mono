@@ -76,7 +76,7 @@ export function typescript(): Array<Linter.Config> {
         '@typescript-eslint/triple-slash-reference': 'off',
         '@typescript-eslint/unified-signatures': 'off',
         '@typescript-eslint/explicit-function-return-type': [
-          'error',
+          'off',
           {
             allowExpressions: true,
             allowHigherOrderFunctions: true,
