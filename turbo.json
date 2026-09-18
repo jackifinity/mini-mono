@@ -12,7 +12,7 @@
       "persistent": true,
       "cache": false
     },
-    "clean": {
+    "clear": {
       "cache": false
     },
     "reinit": {
