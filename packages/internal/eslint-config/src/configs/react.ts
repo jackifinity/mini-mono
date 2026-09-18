@@ -1,6 +1,6 @@
 import type { Linter } from 'eslint';
 
-import reactPlugin from 'eslint-plugin-react';
+import reactPlugin from '@eslint-react/eslint-plugin';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 
 const GLOB_JSX = '**/*.?([cm])jsx';
@@ -12,17 +12,7 @@ export function react(): Array<Linter.Config> {
       name: 'react/setup',
       files: [GLOB_JSX, GLOB_TSX],
       plugins: {
-        react: reactPlugin,
-      },
-      settings: {
-        version: 'detect',
-      },
-      languageOptions: {
-        parserOptions: {
-          ecmaFeatures: {
-            jsx: true,
-          },
-        },
+        '@eslint-react': reactPlugin,
       },
       rules: {
         ...reactPlugin.configs.recommended.rules,
