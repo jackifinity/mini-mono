@@ -48,19 +48,10 @@ export function jsonc(): Array<Linter.Config> {
         'jsonc/comma-dangle': ['error', 'never'],
         'jsonc/comma-style': ['error', 'last'],
         'jsonc/indent': ['error', 2],
-        'jsonc/key-spacing': [
-          'error',
-          { afterColon: true, beforeColon: false },
-        ],
-        'jsonc/object-curly-newline': [
-          'error',
-          { consistent: true, multiline: true },
-        ],
+        'jsonc/key-spacing': ['error', { afterColon: true, beforeColon: false }],
+        'jsonc/object-curly-newline': ['error', { consistent: true, multiline: true }],
         'jsonc/object-curly-spacing': ['error', 'always'],
-        'jsonc/object-property-newline': [
-          'error',
-          { allowAllPropertiesOnSameLine: true },
-        ],
+        'jsonc/object-property-newline': ['error', { allowAllPropertiesOnSameLine: true }],
         'jsonc/quote-props': 'error',
         'jsonc/quotes': 'error',
       },
@@ -178,23 +169,12 @@ function sortPackageJson(): Linter.Config {
 function sortTsconfig(): Linter.Config {
   return {
     name: 'sort/tsconfig-json',
-    files: [
-      '**/tsconfig.json',
-      '**/tsconfig.*.json',
-      'internal/tsconfig/*.json',
-    ],
+    files: ['**/tsconfig.json', '**/tsconfig.*.json', 'internal/tsconfig/*.json'],
     rules: {
       'jsonc/sort-keys': [
         'error',
         {
-          order: [
-            'extends',
-            'compilerOptions',
-            'references',
-            'files',
-            'include',
-            'exclude',
-          ],
+          order: ['extends', 'compilerOptions', 'references', 'files', 'include', 'exclude'],
           pathPattern: '^$',
         },
         {

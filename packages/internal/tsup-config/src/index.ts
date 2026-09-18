@@ -10,9 +10,7 @@ export const defaultOptions = {
   treeshake: true,
 } satisfies Options;
 
-export const mergeConfig: (
-  custom: Options,
-) => ReturnType<typeof defineConfig> = (custom = {}) => {
+export const mergeConfig: (custom: Options) => ReturnType<typeof defineConfig> = (custom = {}) => {
   return defineConfig((options) => ({
     ...options,
     ...defaultOptions,

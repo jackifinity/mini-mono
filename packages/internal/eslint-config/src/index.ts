@@ -1,15 +1,6 @@
 import type { Linter } from 'eslint';
 
-import {
-  ignores,
-  javascript,
-  typescript,
-  jsonc,
-  pnpm,
-  perfectionist,
-  turbo,
-  react,
-} from './configs';
+import { ignores, javascript, typescript, jsonc, pnpm, perfectionist, turbo, react } from './configs';
 
 type FlatConfig = Linter.Config;
 type InternalFlatConfig = FlatConfig | FlatConfig[];

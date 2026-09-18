@@ -6,7 +6,7 @@ export const config = {
   htmlWhitespaceSensitivity: 'css',
   insertPragma: false,
   jsxSingleQuote: true,
-  printWidth: 80,
+  printWidth: 120,
   proseWrap: 'always',
   quoteProps: 'as-needed',
   requirePragma: false,
