@@ -121,5 +121,11 @@ dist
 # turborepo cache
 .turbo
 
-#MAC OS
+# MAC OS
 .DS_Store
+
+# local db
+*.sqlite3
+
+# React Router
+.react-router/
