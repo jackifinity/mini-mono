@@ -73,5 +73,12 @@ export function typescript(): Array<Linter.Config> {
         ],
       },
     },
+    {
+      name: 'typescript/rules-ignore',
+      files: ['apps/server/src/app/**'],
+      rules: {
+        '@typescript-eslint/consistent-type-imports': 'off',
+      },
+    },
   ];
 }
