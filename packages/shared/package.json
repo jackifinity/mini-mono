@@ -1,0 +1,14 @@
+{
+  "name": "@workspace/shared",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@workspace/tsconfig": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

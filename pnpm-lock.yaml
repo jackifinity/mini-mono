@@ -190,6 +190,15 @@ importers:
         specifier: 'catalog:'
         version: 5.9.3
 
+  packages/shared:
+    devDependencies:
+      '@workspace/tsconfig':
+        specifier: workspace:*
+        version: link:../internal/tsconfig
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
 packages:
 
   '@babel/code-frame@7.27.1':
