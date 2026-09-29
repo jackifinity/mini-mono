@@ -46,6 +46,7 @@ export function ignores(): Linter.Config[] {
         '**/*.sh',
         '**/*.ttf',
         '**/*.woff',
+        '**/.react-router/**',
       ],
     },
   ];
