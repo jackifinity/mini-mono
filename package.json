@@ -11,8 +11,10 @@
     "node": ">=24"
   },
   "scripts": {
+    "dev": "turbo run dev --ui tui",
+    "check-types": "turbo run check-types --ui tui",
     "clear": "turbo run clear",
-    "reinit": "turbo run reinit",
+    "reinit": "turbo run reinit --ui tui",
     "preinstall": "npx only-allow pnpm",
     "postinstall": "pnpm run reinit",
     "update:deps": "npx taze -r -w",
@@ -26,6 +28,7 @@
     "@workspace/prettier-config": "workspace:^",
     "eslint": "catalog:",
     "prettier": "catalog:",
+    "prettier-plugin-tailwindcss": "catalog:",
     "turbo": "catalog:",
     "typescript": "catalog:"
   }
