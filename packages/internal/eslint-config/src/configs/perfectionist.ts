@@ -35,7 +35,7 @@ export function perfectionist(): Linter.Config[] {
               'style',
               'unknown',
             ],
-            internalPattern: ['^#/.+'],
+            internalPattern: ['^@/.+'],
             newlinesBetween: 1,
             order: 'asc',
             type: 'natural',
